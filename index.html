@@ -9,13 +9,22 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg-0:#04050d;
-    --bg-1:#0b0e22;
-    --cyan:#42e8ff;
-    --magenta:#ff3ec9;
-    --violet:#8b5cf6;
-    --text:#f3f5ff;
-    --text-dim:#9aa2c9;
+    --bg-0:#0a0403;
+    --bg-1:#1a0605;
+    --red:#ff2b2b;
+    --red-deep:#8f0000;
+    --ember:#ff8a3d;
+    --text:#f6f1ee;
+    --text-dim:#c9a8a3;
+
+    /* ============================================================
+       IMAGEM DE FUNDO (opcional)
+       Troque "none" pelo link da sua imagem, assim:
+       --bg-image: url('https://seulink.com/imagem.jpg');
+       Deixe "none" para usar só o efeito gerado por CSS.
+       ============================================================ */
+    --bg-image:  none https://i.pinimg.com/736x/da/39/5b/da395bb9a01046efdd1546a4df437f85.jpg; 
+
     box-sizing:border-box;
     padding-top:env(safe-area-inset-top,0px);
     padding-bottom:env(safe-area-inset-bottom,0px);
@@ -43,15 +52,21 @@
     isolation:isolate;
   }
 
+  /* background: dark red/ember atmosphere + optional image via --bg-image */
   .scene::before{
     content:"";
     position:absolute;
     inset:0;
-    background:
-      radial-gradient(circle at 18% 20%, rgba(139,92,246,0.35), transparent 45%),
-      radial-gradient(circle at 82% 78%, rgba(66,232,255,0.28), transparent 50%),
-      radial-gradient(circle at 85% 15%, rgba(255,62,201,0.20), transparent 40%),
+    background-image:
+      linear-gradient(180deg, rgba(8,3,2,0.55), rgba(8,3,2,0.88)),
+      var(--bg-image),
+      radial-gradient(circle at 20% 22%, rgba(255,43,43,0.38), transparent 45%),
+      radial-gradient(circle at 82% 78%, rgba(255,138,61,0.22), transparent 50%),
+      radial-gradient(circle at 85% 10%, rgba(143,0,0,0.30), transparent 40%),
       linear-gradient(180deg, var(--bg-0), var(--bg-1));
+    background-size:cover, cover, auto, auto, auto, auto;
+    background-position:center, center, center, center, center, center;
+    background-repeat:no-repeat;
     z-index:-2;
   }
   .scene::after{
@@ -74,8 +89,8 @@
     z-index:-1;
     will-change:transform;
   }
-  .orb-a{width:38vmax;height:38vmax;top:-12vmax;left:-10vmax;background:radial-gradient(circle,var(--violet),transparent 70%);animation:drift-a 14s ease-in-out infinite;}
-  .orb-b{width:32vmax;height:32vmax;bottom:-14vmax;right:-10vmax;background:radial-gradient(circle,var(--cyan),transparent 70%);animation:drift-b 16s ease-in-out infinite;}
+  .orb-a{width:38vmax;height:38vmax;top:-12vmax;left:-10vmax;background:radial-gradient(circle,var(--red),transparent 70%);animation:drift-a 14s ease-in-out infinite;}
+  .orb-b{width:32vmax;height:32vmax;bottom:-14vmax;right:-10vmax;background:radial-gradient(circle,var(--ember),transparent 70%);animation:drift-b 16s ease-in-out infinite;}
   @keyframes drift-a{0%,100%{transform:translate(0,0)}50%{transform:translate(3vmax,2vmax)}}
   @keyframes drift-b{0%,100%{transform:translate(0,0)}50%{transform:translate(-3vmax,-2vmax)}}
   @media (prefers-reduced-motion:reduce){.orb{animation:none}}
@@ -97,7 +112,7 @@
     line-height:1.08;
     font-weight:400;
     letter-spacing:0.01em;
-    background:linear-gradient(100deg,#ffffff 20%,var(--cyan) 55%,var(--magenta) 90%);
+    background:linear-gradient(100deg,#ffffff 15%,var(--red) 60%,var(--ember) 95%);
     -webkit-background-clip:text;
     background-clip:text;
     color:transparent;
@@ -149,7 +164,7 @@
     opacity:0.8;
   }
 
-  :focus-visible{outline:2px solid var(--cyan);outline-offset:3px;}
+  :focus-visible{outline:2px solid var(--red);outline-offset:3px;}
 
   @media (max-height:520px){
     main{gap:10px;padding:14px;}
