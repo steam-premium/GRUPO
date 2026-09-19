@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Entre no grupo do WhatsApp</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-0:#04050d;
+    --bg-1:#0b0e22;
+    --cyan:#42e8ff;
+    --magenta:#ff3ec9;
+    --violet:#8b5cf6;
+    --text:#f3f5ff;
+    --text-dim:#9aa2c9;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *{box-sizing:inherit;margin:0;padding:0;}
+  html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px);}
+  body{
+    height:100%;
+    overflow:hidden;
+    background:var(--bg-0);
+    color:var(--text);
+    font-family:'Barlow', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .scene{
+    position:relative;
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    isolation:isolate;
+  }
+
+  .scene::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(circle at 18% 20%, rgba(139,92,246,0.35), transparent 45%),
+      radial-gradient(circle at 82% 78%, rgba(66,232,255,0.28), transparent 50%),
+      radial-gradient(circle at 85% 15%, rgba(255,62,201,0.20), transparent 40%),
+      linear-gradient(180deg, var(--bg-0), var(--bg-1));
+    z-index:-2;
+  }
+  .scene::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size:42px 42px;
+    mask-image:radial-gradient(ellipse at center, black 0%, transparent 72%);
+    z-index:-1;
+  }
+
+  .orb{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(50px);
+    opacity:0.55;
+    z-index:-1;
+    will-change:transform;
+  }
+  .orb-a{width:38vmax;height:38vmax;top:-12vmax;left:-10vmax;background:radial-gradient(circle,var(--violet),transparent 70%);animation:drift-a 14s ease-in-out infinite;}
+  .orb-b{width:32vmax;height:32vmax;bottom:-14vmax;right:-10vmax;background:radial-gradient(circle,var(--cyan),transparent 70%);animation:drift-b 16s ease-in-out infinite;}
+  @keyframes drift-a{0%,100%{transform:translate(0,0)}50%{transform:translate(3vmax,2vmax)}}
+  @keyframes drift-b{0%,100%{transform:translate(0,0)}50%{transform:translate(-3vmax,-2vmax)}}
+  @media (prefers-reduced-motion:reduce){.orb{animation:none}}
+
+  main{
+    position:relative;
+    width:min(92vw,540px);
+    text-align:center;
+    padding:clamp(20px,4vh,40px) clamp(18px,4vw,32px);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:clamp(14px,2.4vh,22px);
+  }
+
+  h1{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:clamp(2.1rem,6vw,3.3rem);
+    line-height:1.08;
+    font-weight:400;
+    letter-spacing:0.01em;
+    background:linear-gradient(100deg,#ffffff 20%,var(--cyan) 55%,var(--magenta) 90%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+
+  p.sub{
+    color:var(--text-dim);
+    font-size:clamp(0.95rem,2.4vw,1.1rem);
+    line-height:1.5;
+    max-width:38ch;
+  }
+
+  .cta{
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    width:100%;
+    max-width:420px;
+    padding:clamp(16px,3vh,20px) 20px;
+    margin-top:clamp(6px,1vh,10px);
+    border-radius:16px;
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:clamp(1.15rem,3vw,1.35rem);
+    font-weight:700;
+    letter-spacing:0.02em;
+    color:#04120c;
+    text-decoration:none;
+    background:linear-gradient(120deg,#25d366,#42e8ff);
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.12) inset,
+      0 8px 24px rgba(37,211,102,0.35),
+      0 0 46px rgba(66,232,255,0.35);
+    animation:pulse 2.6s ease-in-out infinite;
+    transition:transform .15s ease;
+  }
+  .cta:active{transform:scale(0.97);}
+  @keyframes pulse{
+    0%,100%{box-shadow:0 0 0 1px rgba(255,255,255,0.12) inset,0 8px 24px rgba(37,211,102,0.35),0 0 46px rgba(66,232,255,0.35);}
+    50%{box-shadow:0 0 0 1px rgba(255,255,255,0.18) inset,0 8px 30px rgba(37,211,102,0.5),0 0 70px rgba(66,232,255,0.55);}
+  }
+  @media (prefers-reduced-motion:reduce){.cta{animation:none}}
+  .cta svg{width:24px;height:24px;flex:none;}
+
+  p.micro{
+    color:var(--text-dim);
+    font-size:0.82rem;
+    opacity:0.8;
+  }
+
+  :focus-visible{outline:2px solid var(--cyan);outline-offset:3px;}
+
+  @media (max-height:520px){
+    main{gap:10px;padding:14px;}
+    h1{font-size:1.35rem;}
+    p.sub{font-size:0.85rem;}
+    .cta{padding:12px 18px;}
+  }
+</style>
+</head>
+<body>
+  <div class="scene">
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+    <main>
+      <h1>Promoções de jogos direto no seu WhatsApp</h1>
+      <p class="sub">Cupons, descontos e lançamentos antes de todo mundo. Entre no grupo, é grátis e leva 5 segundos.</p>
+      <a class="cta" href="https://chat.whatsapp.com/LCr05VcITfYK9CXDwOZ0Dd" target="_blank" rel="noopener">
+        <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.01 3C9.38 3 4 8.38 4 15.01c0 2.36.68 4.56 1.86 6.42L4 29l7.76-1.83a11.9 11.9 0 0 0 4.25.78h.01c6.63 0 12.01-5.38 12.01-12.01C28.02 8.38 22.64 3 16.01 3Zm7.02 17.19c-.29.82-1.68 1.56-2.32 1.66-.6.09-1.35.13-2.18-.14-.5-.16-1.15-.37-1.98-.73-3.48-1.5-5.75-5.03-5.93-5.26-.17-.23-1.42-1.89-1.42-3.6 0-1.71.9-2.55 1.22-2.9.32-.35.7-.44.93-.44.23 0 .47 0 .67.01.21.01.5-.08.79.6.29.7 1 2.4 1.09 2.58.09.17.15.37.03.6-.12.23-.18.37-.35.57-.17.2-.36.44-.52.6-.17.17-.35.35-.15.69.2.35.9 1.48 1.94 2.4 1.33 1.19 2.45 1.56 2.8 1.73.35.17.55.15.75-.09.2-.23.87-1.02 1.1-1.37.23-.35.46-.29.77-.17.32.11 2.02.95 2.37 1.12.35.17.58.26.67.4.09.15.09.85-.2 1.67Z"/></svg>
+        ENTRAR NO GRUPO DO WHATSAPP
+      </a>
+      <p class="micro">Sem spam. Saia quando quiser.</p>
+    </main>
+  </div>
+</body>
+</html>
