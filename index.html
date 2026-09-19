@@ -191,7 +191,11 @@ h1{
   background-clip:text;
   -webkit-text-fill-color:transparent;
   color:transparent;
-  filter:url(#rough) drop-shadow(0 0 .14em rgba(255,30,20,.75)) drop-shadow(.02em .04em 0 #3a0000);
+  filter:
+    drop-shadow(.025em .025em 0 #4a0000)
+    drop-shadow(.025em .025em 0 #4a0000)
+    drop-shadow(.025em .025em 0 #4a0000)
+    drop-shadow(0 0 .16em rgba(255,30,20,.7));
 }
 .swoosh{
   width:88%;
@@ -353,13 +357,6 @@ h1{
 </style>
 </head>
 <body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <filter id="rough" x="-5%" y="-10%" width="110%" height="120%">
-    <feTurbulence type="fractalNoise" baseFrequency=".035 .06" numOctaves="2" seed="3" result="n"/>
-    <feDisplacementMap in="SourceGraphic" in2="n" scale="4"/>
-  </filter>
-</svg>
-
 <div class="rays" aria-hidden="true"></div>
 <div class="floor" aria-hidden="true"></div>
 
@@ -394,9 +391,26 @@ h1{
     </div>
   </section>
 
- 
+  <ul class="features">
+    <li>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="11" rx="5.5"/><path d="M7 10.5v4M5 12.5h4"/><circle cx="15.5" cy="11.5" r=".6"/><circle cx="18" cy="13.5" r=".6"/></svg>
+      <span>Grandes <b>lançamentos</b></span>
+    </li>
+    <li>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h8.2a1 1 0 01.7.3l9 9a1 1 0 010 1.4l-6.9 6.9a1 1 0 01-1.4 0l-9-9A1 1 0 013 11.8V3z"/><circle cx="7.5" cy="7.5" r="1.4"/><path d="M10.5 15l4-4"/></svg>
+      <span>Descontos <b>exclusivos</b></span>
+    </li>
+    <li>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a4.5 4.5 0 01-.6-8.96A6 6 0 0117.9 8.5 4 4 0 0117 18"/><path d="M12 11v8m-3-3l3 3 3-3"/></svg>
+      <span>Download <b>imediato</b></span>
+    </li>
+    <li>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.2 7.9-8 9-4.8-1.1-8-4.5-8-9V6l8-3z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
+      <span>Compra <b>segura</b></span>
+    </li>
+  </ul>
 </main>
 
 <div class="fx" aria-hidden="true"></div>
 </body>
-</html>J7NU
+</html>
