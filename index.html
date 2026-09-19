@@ -17,6 +17,7 @@
   --red-deep:#a30000;
   --ink:#fff;
   --ink-soft:rgba(255,238,236,.82);
+  --logo-altura:clamp(56px,12vh,120px); /* altura da imagem opcional */
 }
 *,*::before,*::after{box-sizing:border-box}
 html,body{
@@ -97,22 +98,9 @@ main{
   width:min(100%,1100px);
   margin:0 auto;
   display:grid;
-  grid-template-rows:auto 1fr auto;
+  grid-template-rows:1fr;
   animation:enter .9s cubic-bezier(.2,.7,.2,1) both;
 }
-.lead{
-  justify-self:start;
-  margin:0;
-  padding-left:10px;
-  border-left:3px solid var(--red);
-  font-size:clamp(.66rem,2.9vw,.9rem);
-  font-weight:500;
-  letter-spacing:.14em;
-  line-height:1.5;
-  text-transform:uppercase;
-}
-.lead b{display:block;color:var(--red);font-weight:800}
-
 .hero{
   align-self:center;
   justify-self:center;
@@ -124,29 +112,19 @@ main{
   gap:clamp(10px,2.2vh,22px);
 }
 
-/* Emblema */
-.emblem{
-  width:clamp(54px,10.5vh,104px);
-  aspect-ratio:1;
-  display:grid;
-  place-items:center;
-  border-radius:50%;
-  background:radial-gradient(circle at 32% 24%,#7a0d0d 0,#2a0505 46%,#0b0101 100%);
-  box-shadow:
-    inset 0 0 0 clamp(2px,.45vh,4px) var(--red-hot),
-    inset 0 8px 18px rgba(255,120,100,.35),
-    0 0 clamp(24px,5vh,48px) rgba(255,20,20,.55);
+/* Logo opcional (imagem com fundo transparente): o brilho vermelho acompanha o contorno da imagem */
+.logo{
+  display:block;
+  height:var(--logo-altura);
+  width:auto;
+  max-width:min(80vw,420px);
+  margin-bottom:clamp(10px,2.2vh,22px);
+  object-fit:contain;
+  filter:
+    drop-shadow(0 0 10px rgba(255,40,30,.8))
+    drop-shadow(0 0 28px rgba(255,20,20,.55));
 }
-.emblem svg{
-  width:56%;
-  height:56%;
-  fill:none;
-  stroke:#ff6a5a;
-  stroke-width:1.7;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-  filter:drop-shadow(0 0 8px rgba(255,40,30,.8));
-}
+.logo[src=""],.logo:not([src]){display:none}
 
 /* Título: cromado + vermelho pincelado */
 .brand{
@@ -214,6 +192,7 @@ h1{
   letter-spacing:.13em;
   line-height:1.55;
   text-transform:uppercase;
+  text-wrap:balance;
 }
 .sub b{color:var(--red);font-weight:800}
 
@@ -285,52 +264,13 @@ h1{
   color:var(--ink-soft);
 }
 
-/* ---------- Benefícios ---------- */
-.features{
-  justify-self:center;
-  width:min(100%,760px);
-  margin:0;
-  padding:0;
-  list-style:none;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  align-items:start;
-}
-.features li{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:clamp(4px,1vh,8px);
-  padding:0 2px;
-  text-align:center;
-  font-size:clamp(.56rem,2.55vw,.74rem);
-  font-weight:800;
-  letter-spacing:.03em;
-  line-height:1.25;
-  text-transform:uppercase;
-  text-shadow:0 1px 6px #000;
-}
-.features li+li{border-left:1px solid rgba(255,43,43,.45)}
-.features b{display:block;color:var(--red)}
-.features svg{
-  width:clamp(26px,5.2vh,40px);
-  aspect-ratio:1;
-  fill:none;
-  stroke:var(--red);
-  stroke-width:1.6;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-  filter:drop-shadow(0 0 6px rgba(255,30,30,.75));
-}
-
 @keyframes shine{0%{transform:translateX(-100%) skewX(-18deg)}45%,100%{transform:translateX(420%) skewX(-18deg)}}
 @keyframes lights{from{opacity:0}to{opacity:1}}
 @keyframes enter{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
 /* ---------- Celular deitado / telas baixas ---------- */
 @media (max-height:500px){
-  main{grid-template-rows:1fr auto}
-  .lead,.emblem{display:none}
+  .logo{height:clamp(30px,15vh,56px);margin-bottom:8px}
   .hero{
     width:min(100%,900px);
     display:grid;
@@ -347,7 +287,6 @@ h1{
   .action{grid-area:action;align-self:start;align-items:flex-start;width:100%}
   .cta-wrap{width:100%}
   .cta-in{padding:13px 16px;font-size:.85rem}
-  .features svg{width:24px}
 }
 @media (prefers-reduced-motion:reduce){
   .rays,main{animation:none}
@@ -361,14 +300,10 @@ h1{
 <div class="floor" aria-hidden="true"></div>
 
 <main>
-  <p class="lead">Jogue sem limites <b>com o melhor do PC!</b></p>
-
   <section class="hero">
-    <div class="emblem" aria-hidden="true">
-      <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="11" rx="5.5"/><path d="M7 10.5v4M5 12.5h4"/><circle cx="15.5" cy="11.5" r=".6"/><circle cx="18" cy="13.5" r=".6"/></svg>
-    </div>
-
     <div class="brand">
+      <!-- LOGO OPCIONAL: cole o link da imagem (PNG, WebP ou SVG com fundo transparente) entre as aspas de src="" -->
+      <img class="logo" src="" alt="" decoding="async" onerror="this.style.display='none'">
       <h1><span class="steam">GRUPO</span><span class="premium">#127</span></h1>
       <svg class="swoosh" viewBox="0 0 400 20" preserveAspectRatio="none" aria-hidden="true">
         <defs><linearGradient id="sw" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#ff1a1a" stop-opacity="0"/><stop offset=".15" stop-color="#ff2a1f"/><stop offset=".85" stop-color="#ff5040"/><stop offset="1" stop-color="#ff1a1a" stop-opacity="0"/></linearGradient></defs>
@@ -376,7 +311,7 @@ h1{
       </svg>
     </div>
 
-    <p class="sub">entre no grupo e clique no link na DESCRICÃO<br>E VEJA<b>COMO FUNCIONA</b></p>
+    <p class="sub">entre no grupo e clique no link na DESCRIÇÃO<br>E VEJA <b>COMO FUNCIONA</b></p>
 
     <div class="action">
       <div class="cta-wrap">
@@ -387,28 +322,10 @@ h1{
           </span>
         </a>
       </div>
-      <span class="note">Grupo serio, sem spam!</span>
+      <span class="note">Grupo sério, sem spam!</span>
     </div>
   </section>
 
-  <ul class="features">
-    <li>
-      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="11" rx="5.5"/><path d="M7 10.5v4M5 12.5h4"/><circle cx="15.5" cy="11.5" r=".6"/><circle cx="18" cy="13.5" r=".6"/></svg>
-      <span>Grandes <b>lançamentos</b></span>
-    </li>
-    <li>
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h8.2a1 1 0 01.7.3l9 9a1 1 0 010 1.4l-6.9 6.9a1 1 0 01-1.4 0l-9-9A1 1 0 013 11.8V3z"/><circle cx="7.5" cy="7.5" r="1.4"/><path d="M10.5 15l4-4"/></svg>
-      <span>Descontos <b>exclusivos</b></span>
-    </li>
-    <li>
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a4.5 4.5 0 01-.6-8.96A6 6 0 0117.9 8.5 4 4 0 0117 18"/><path d="M12 11v8m-3-3l3 3 3-3"/></svg>
-      <span>Download <b>imediato</b></span>
-    </li>
-    <li>
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.2 7.9-8 9-4.8-1.1-8-4.5-8-9V6l8-3z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
-      <span>Compra <b>segura</b></span>
-    </li>
-  </ul>
 </main>
 
 <div class="fx" aria-hidden="true"></div>
